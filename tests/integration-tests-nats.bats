@@ -27,7 +27,16 @@ load ../script/libtest
   expose_nats_service
 }
 @test "Test function: pubsub-python-nats" {
-  deploy_function pubsub-python-nats
-  verify_function pubsub-python-nats
-  kubeless_function_delete pubsub-python-nats
+  deploy_function python-nats
+  verify_function python-nats
+  kubeless_function_delete python-nats
+}
+@test "Test 1:n association between NATS trigger and functions" {
+  deploy_function nats-python-func1-topic-test
+  deploy_function nats-python-func2-topic-test
+  deploy_nats_trigger nats-python-trigger-topic-test
+  verify_function nats-python-func1-topic-test
+  verify_function nats-python-func2-topic-test
+  kubeless_function_delete nats-python-func1-topic-test
+  kubeless_function_delete nats-python-func2-topic-test
 }
