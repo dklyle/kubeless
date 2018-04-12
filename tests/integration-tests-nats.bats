@@ -27,7 +27,7 @@ load ../script/libtest
   expose_nats_service
 }
 @test "Test function: pubsub-python-nats" {
-  deploy_function pubsub-python-nats
-  verify_function pubsub-python-nats
-  kubeless_function_delete pubsub-python-nats
+  deploy_function python-nats
+  verify_function python-nats
+  kubeless_function_delete python-nats
 }
